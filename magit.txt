@@ -1,0 +1,88 @@
+= magit チートシート [2017-05-31]
+
+== プルモード
+github での変更を反映
+u	(origin/master から) プル
+
+== フェッチモード
+github での変更点を取得
+a	全てのリモートから fetch
+
+== 編集の一部をコミット/Undo
+magit-status
+modified FILE で TAB
+=== コミットする場合
+コミットする部分で C-SPC
+s でそこだけ staging
+通常のコミット
+=== Undo する場合
+Undo する部分で C-SPC
+k で Undo (元に戻せないので確認)
+=== ファイル全体を Undo する場合
+modified FILE で k (元に戻せないので確認)
+
+== マージコンフリクトに対処
+unmerged FILE で RET で編集画面
+編集して保存
+magit-status
+unmerged FILE で s で staging
+c c でコミットメッセージ
+C-c C-c でコミット実行
+l b (コミットログ) でマージ確認
+
+----
+== プッシュモード
+magit-status から P
+u	プッシュ (初回は origin/master などプッシュ先指定)
+
+=== リモートの追加
+# origin として追加
+シェル上で操作:
+$ git remote add origin https://github.com/YOUR-NAME/REPO-NAME.git
+
+== マージモード
+magit-status から m
+m	マージ
+
+== ブランチモード
+magit-status から b
+c	ブランチを作ってチェックアウト
+b	チェックアウト
+
+== ログモード
+magit-status から l
+b	コミットログ表示
+q	magit-status に戻る
+RET	そのコミットでの変更点を見る
+コミットログ表示モードから
+b	コミットを指定してブランチモード
+
+----
+== コミットモード
+magit-status から c
+c	コミット
+C-c C-c	コミットメッセージを完了
+
+== magit-status
+迷ったらまず ?
+?	コマンド一覧
+s	ファイルを staging
+c	コミットモード
+l	ログモード
+b	ブランチモード
+m	マージモード
+P	プッシュモード
+f	フェッチモード
+F	プルモード
+
+== magit への入り口
+(bind-key "C-x g" 'magit-status) しておくとよい
+M-x magit-status	magit への入り口
+
+== リポジトリ作成
+ディレクトリを指定して実行。「In the beginning there was darkness」と表示されれば作成完了
+M-x magit-init	リポジトリ作成
+
+== ref
+- [Emacs] magitチュートリアル - Qiita
+- http://qiita.com/maueki/items/70dbf62d8bd2ee348274
