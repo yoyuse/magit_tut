@@ -1,5 +1,6 @@
 # repository for magit tutorial
 
+- 2017-05-31 add magit.txt
 - 2016-09-03
 
 ## ref
